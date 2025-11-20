@@ -3,6 +3,18 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { CartItem } from "./Cart";
 
+export const BACKEND_BASE_URL = "https://karuna-kodwani-backend.vercel.app";
+
+declare global {
+  interface Window {
+    BACKEND_BASE_URL?: string;
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.BACKEND_BASE_URL = window.BACKEND_BASE_URL || BACKEND_BASE_URL;
+}
+
 declare global {
   interface Window {
     Razorpay: any;
@@ -24,6 +36,14 @@ export function PaymentForm({
 }: PaymentFormProps) {
   const [loading, setLoading] = useState(false);
 
+  // Local breakdown so UI clearly shows how total is calculated
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const gst = Math.round(subtotal * 0.18); // 18% GST (matches App.calculateTotal)
+  const computedTotal = subtotal + gst;
+
   // Utility to load Razorpay script dynamically
   const loadRazorpayScript = () => {
     return new Promise((resolve, reject) => {
@@ -40,14 +60,11 @@ export function PaymentForm({
     setLoading(true);
 
     // Step 1: Create order in backend
-    const response = await fetch(
-      "https://karuna-kodwani-backend.vercel.app/api/v1/create-order",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: total }),
-      }
-    );
+    const response = await fetch(BACKEND_BASE_URL + "/api/v1/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: total }),
+    });
     const data = await response.json();
     setLoading(false);
 
@@ -57,9 +74,7 @@ export function PaymentForm({
     }
 
     // Step 2: Get Razorpay Key from backend
-    const keyRes = await fetch(
-      "https://karuna-kodwani-backend.vercel.app/api/v1/get-key"
-    );
+    const keyRes = await fetch(BACKEND_BASE_URL + "/api/v1/get-key");
     const keyData = await keyRes.json();
 
     await loadRazorpayScript();
@@ -76,7 +91,7 @@ export function PaymentForm({
         // Step 4: Verify payment
         setLoading(true);
         const verifyRes = await fetch(
-          "https://karuna-kodwani-backend.vercel.app/api/v1/verify-payment",
+          BACKEND_BASE_URL + "/api/v1/verify-payment",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -219,13 +234,55 @@ export function PaymentForm({
           )}
           <div
             style={{
-              fontWeight: 700,
-              fontSize: "1.1rem",
-              color: "#1976d2",
-              marginBottom: "1.5rem",
+              fontWeight: 400,
+              fontSize: "0.975rem",
+              color: "#232323",
+              marginBottom: "1rem",
+              borderRadius: 8,
+              padding: "0.6rem",
+              background: "#fbfbff",
             }}
           >
-            Total: ₹{total}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: 6,
+              }}
+            >
+              <span>Subtotal</span>
+              <span>₹{subtotal.toLocaleString()}</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: 6,
+              }}
+            >
+              <span>GST (18%)</span>
+              <span>₹{gst.toLocaleString()}</span>
+            </div>
+            <div
+              style={{ height: 1, background: "#e6e6e6", margin: "8px 0" }}
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                fontWeight: 700,
+                color: "#1976d2",
+                fontSize: "1.05rem",
+              }}
+            >
+              <span>Total</span>
+              <span>₹{(total ?? computedTotal).toLocaleString()}</span>
+            </div>
+            {total !== computedTotal && (
+              <div style={{ marginTop: 6, fontSize: "0.8rem", color: "#666" }}>
+                Note: Displayed total may include rounding adjustments.
+              </div>
+            )}
           </div>
           <div
             style={{
