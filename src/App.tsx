@@ -5,6 +5,7 @@ import { HomePage } from "./components/pages/HomePage";
 import { AboutPage } from "./components/pages/AboutPage";
 import { ServicesPage } from "./components/pages/ServicesPage";
 import { BlogPage } from "./components/pages/BlogPage";
+import { BlogDetailPage } from "./components/pages/BlogDetailPage";
 import { FAQPage } from "./components/pages/FAQPage";
 import { PrivacyPolicyPage } from "./components/pages/PrivacyPolicyPage";
 import { TermsPage } from "./components/pages/TermsPage";
@@ -25,6 +26,7 @@ import { toast } from "sonner@2.0.3";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
+  const [blogId, setBlogId] = useState<string>("");
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
@@ -90,8 +92,11 @@ export default function App() {
     setCartItems([]);
   };
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = (page: string, id?: string) => {
     setCurrentPage(page);
+    if (id) {
+      setBlogId(id);
+    }
   };
 
   const calculateTotal = () => {
@@ -145,7 +150,9 @@ export default function App() {
       case "service-life-coaching":
         return <LifeCoachingDetailPage onAddToCart={handleAddToCart} />;
       case "blog":
-        return <BlogPage />;
+        return <BlogPage onNavigate={handleNavigate} />;
+      case "blog-detail":
+        return <BlogDetailPage blogId={blogId} onNavigate={handleNavigate} />;
       case "faq":
         return <FAQPage />;
       case "privacy":
