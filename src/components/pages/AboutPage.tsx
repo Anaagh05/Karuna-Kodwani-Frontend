@@ -1,5 +1,13 @@
 import { motion } from "motion/react";
-import { Heart, Award, Users, Sparkles, CheckCircle, Apple, Target } from "lucide-react";
+import {
+  Heart,
+  Award,
+  Users,
+  Sparkles,
+  CheckCircle,
+  Apple,
+  Target,
+} from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function AboutPage() {
@@ -7,22 +15,26 @@ export function AboutPage() {
     {
       icon: Sparkles,
       title: "Meditation",
-      description: "As a Reiki master, I design and teach bespoke meditation and breathing courses incorporating pranayama and mindfulness techniques.",
+      description:
+        "As a Reiki master, I design and teach bespoke meditation and breathing courses incorporating pranayama and mindfulness techniques.",
     },
     {
       icon: Apple,
       title: "Dietetics",
-      description: "With an MSc in Nutrition and certification as a diabetic educator, I am a clinically trained dietitian specializing in weight management and metabolic health.",
+      description:
+        "With an MSc in Nutrition and certification as a diabetic educator, I am a clinically trained dietitian specializing in weight management and metabolic health.",
     },
     {
       icon: Target,
       title: "Life Coaching",
-      description: "Unlock your potential with integrated yoga, dietetics, and meditation for personal and professional growth.",
+      description:
+        "Unlock your potential with integrated yoga, dietetics, and meditation for personal and professional growth.",
     },
     {
       icon: Heart,
       title: "Yoga",
-      description: "A seasoned yoga instructor who began practice in 2009 as a freelancer, eventually establishing my own yoga studio in 2014.",
+      description:
+        "A seasoned yoga instructor who began practice in 2009 as a freelancer, eventually establishing my own yoga studio in 2014.",
     },
   ];
 
@@ -77,7 +89,8 @@ export function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Empowering Individuals Through Yoga, Dietetics, and Meditation for Over 15 Years
+              Empowering Individuals Through Yoga, Dietetics, and Meditation for
+              Over 15 Years
             </motion.p>
           </motion.div>
         </div>
@@ -97,18 +110,20 @@ export function AboutPage() {
             >
               <div className="relative">
                 <motion.div
-                  className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl"
+                  className="relative w-full max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden shadow-xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2MDI5MzcxMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                    alt="Karuna Kodwani"
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="aspect-[3/4] sm:aspect-[4/5] lg:h-[550px] lg:aspect-auto">
+                    <ImageWithFallback
+                      src="/about-image.jpeg"
+                      alt="Karuna Kodwani"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </motion.div>
                 <motion.div
-                  className="absolute -top-6 -left-6 w-32 h-32 bg-teal-200 rounded-full opacity-50 blur-3xl"
+                  className="absolute -top-6 -left-6 w-32 h-32 bg-teal-200 rounded-full opacity-50 blur-3xl pointer-events-none"
                   animate={{
                     scale: [1, 1.2, 1],
                     opacity: [0.5, 0.7, 0.5],
@@ -133,37 +148,47 @@ export function AboutPage() {
               <div className="space-y-4">
                 <h2>My Journey</h2>
                 <p className="text-foreground/70">
-                  Karuna Kodwani is a dynamic and versatile mental health coach with a rich and diverse 
-                  background encompassing yoga, dietetics, and meditation. With over 15 years of experience 
-                  in the wellness industry, Karuna has dedicated her career to promoting holistic health and 
-                  well-being.
+                  Karuna Kodwani is a dynamic and versatile mental health coach
+                  with a rich and diverse background encompassing yoga,
+                  dietetics, and meditation. With over 15 years of experience in
+                  the wellness industry, Karuna has dedicated her career to
+                  promoting holistic health and well-being.
                 </p>
                 <p className="text-foreground/70">
-                  She began her journey as a yoga practitioner in 2009 and transitioned into a professional 
-                  yoga instructor, eventually establishing her own yoga studio and diet clinic in 2014. Her 
-                  extensive education includes a Master's degree in Nutrition and certification as a diabetic 
-                  educator, making her a clinically trained dietitian adept at addressing a wide range of 
-                  nutritional needs.
+                  She began her journey as a yoga practitioner in 2009 and
+                  transitioned into a professional yoga instructor, eventually
+                  establishing her own yoga studio and diet clinic in 2014. Her
+                  extensive education includes a Master's degree in Nutrition
+                  and certification as a diabetic educator, making her a
+                  clinically trained dietitian adept at addressing a wide range
+                  of nutritional needs.
                 </p>
                 <div className="p-4 bg-emerald-50 border-l-4 border-emerald-600 rounded-r-lg">
                   <p className="text-foreground/80">
-                    <span className="text-emerald-700">I specialize in weight loss and thyroid management</span>, 
-                    with extensive expertise in addressing metabolic disorders, inflammatory conditions, gut health 
-                    optimization, as well as liver and kidney function support. My comprehensive approach targets 
-                    the root causes of these conditions to promote lasting wellness and vitality.
+                    <span className="text-emerald-700">
+                      I specialize in weight loss and thyroid management
+                    </span>
+                    , with extensive expertise in addressing metabolic
+                    disorders, inflammatory conditions, gut health optimization,
+                    as well as liver and kidney function support. My
+                    comprehensive approach targets the root causes of these
+                    conditions to promote lasting wellness and vitality.
                   </p>
                 </div>
                 <p className="text-foreground/70">
-                  Karuna's expertise spans weight management, diabetic and thyroid diets, and providing 
-                  nutritional support for mental health conditions such as depression. In addition to her 
-                  dietetic and yoga qualifications, Karuna is a Reiki master and a certified facilitator of 
-                  various Osho meditation therapies.
+                  Karuna's expertise spans weight management, diabetic and
+                  thyroid diets, and providing nutritional support for mental
+                  health conditions such as depression. In addition to her
+                  dietetic and yoga qualifications, Karuna is a Reiki master and
+                  a certified facilitator of various Osho meditation therapies.
                 </p>
                 <p className="text-foreground/70">
-                  Karuna's mission is to empower individuals to achieve a balanced and healthy lifestyle 
-                  through personalized coaching. She integrates her knowledge of physical health, mental 
-                  well-being, and spiritual practices to offer a comprehensive approach to her clients. By 
-                  creating a supportive and nurturing environment, Karuna helps her clients navigate their 
+                  Karuna's mission is to empower individuals to achieve a
+                  balanced and healthy lifestyle through personalized coaching.
+                  She integrates her knowledge of physical health, mental
+                  well-being, and spiritual practices to offer a comprehensive
+                  approach to her clients. By creating a supportive and
+                  nurturing environment, Karuna helps her clients navigate their
                   wellness journeys, promoting long-term health and happiness.
                 </p>
               </div>
@@ -188,7 +213,10 @@ export function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  }}
                 >
                   <motion.div
                     className="w-12 h-12 rounded-lg bg-emerald-600 flex items-center justify-center mb-4"
@@ -198,7 +226,9 @@ export function AboutPage() {
                     <area.icon className="w-6 h-6 text-white" />
                   </motion.div>
                   <h4 className="mb-2">{area.title}</h4>
-                  <p className="text-sm text-foreground/60">{area.description}</p>
+                  <p className="text-sm text-foreground/60">
+                    {area.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -277,10 +307,11 @@ export function AboutPage() {
           >
             <h3 className="mb-4">My Mission</h3>
             <p className="text-foreground/70 leading-relaxed">
-              To empower individuals to achieve a balanced and healthy lifestyle through personalized 
-              coaching that integrates physical health, mental well-being, and spiritual practices. 
-              By creating a supportive and nurturing environment, I help my clients navigate their 
-              wellness journeys, promoting long-term health and happiness.
+              To empower individuals to achieve a balanced and healthy lifestyle
+              through personalized coaching that integrates physical health,
+              mental well-being, and spiritual practices. By creating a
+              supportive and nurturing environment, I help my clients navigate
+              their wellness journeys, promoting long-term health and happiness.
             </p>
           </motion.div>
         </div>

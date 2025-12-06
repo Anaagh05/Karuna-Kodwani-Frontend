@@ -135,7 +135,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 transition={{ duration: 0.3 }}
               >
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1645652367526-a0ecb717650a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b2dhJTIwbWVkaXRhdGlvbiUyMHdlbGxuZXNzfGVufDF8fHx8MTc2MDMxODY1Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="/hero_2.jpeg"
                   alt="Wellness and meditation"
                   className="w-full h-full object-cover"
                 />
