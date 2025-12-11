@@ -180,7 +180,8 @@ export function AboutPage() {
                   thyroid diets, and providing nutritional support for mental
                   health conditions such as depression. In addition to her
                   dietetic and yoga qualifications, Karuna is a Reiki master and
-                  a certified facilitator of various Osho meditation therapies.
+                  a certified facilitator of various Osho meditation techniques
+                  and therapies
                 </p>
                 <p className="text-foreground/70">
                   Karuna's mission is to empower individuals to achieve a

@@ -13,6 +13,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       icon: Apple,
       title: "Dietetics",
       description: "Personalized nutrition planning for optimal health",
+      clickable: true,
+      pageId: "service-dietetics",
     },
     {
       icon: Sparkles,
@@ -30,6 +32,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       icon: Target,
       title: "Life Coaching",
       description: "Unlock your potential and achieve your goals",
+      clickable: true,
+      pageId: "service-life-coaching",
     },
   ];
 
@@ -95,8 +99,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                Welcome to a journey of self-discovery and wellness. I'm Karuna Kodwani,
-                your guide to achieving balance through dietetics, yoga, meditation, and life coaching.
+                Welcome to a journey of self-discovery and wellness. I'm Karuna
+                Kodwani, your guide to achieving balance through dietetics,
+                yoga, meditation, and life coaching.
               </motion.p>
               <motion.div
                 className="flex flex-wrap gap-4"
@@ -165,12 +170,25 @@ export function HomePage({ onNavigate }: HomePageProps) {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="relative p-6 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 hover:shadow-xl transition-shadow"
+                className={`relative p-6 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 hover:shadow-xl transition-shadow ${
+                  "clickable" in feature && feature.clickable
+                    ? "cursor-pointer"
+                    : ""
+                }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
+                onClick={() => {
+                  if (
+                    "clickable" in feature &&
+                    "pageId" in feature &&
+                    feature.clickable
+                  ) {
+                    onNavigate(feature.pageId);
+                  }
+                }}
               >
                 {feature.comingSoon && (
                   <div className="absolute top-4 right-4">
@@ -183,7 +201,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <feature.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="mb-2">{feature.title}</h3>
-                <p className="text-sm text-foreground/70">{feature.description}</p>
+                <p className="text-sm text-foreground/70">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -218,15 +238,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-white">Ready to Begin Your Wellness Journey?</h2>
+            <h2 className="text-white">
+              Ready to Begin Your Wellness Journey?
+            </h2>
             <p className="text-lg text-white/90">
-              Take the first step towards a healthier, more balanced life. Book your
-              consultation today and discover the transformative power of holistic healing.
+              Take the first step towards a healthier, more balanced life. Book
+              your consultation today and discover the transformative power of
+              holistic healing.
             </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 className="bg-white text-emerald-600 hover:bg-emerald-50"
